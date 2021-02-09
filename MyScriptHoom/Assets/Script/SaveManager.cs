@@ -4,24 +4,59 @@ using UnityEngine;
 using System;
 using System.IO;
 
-public class SaveManager 
+public class SaveManager
 {
-    public void Writetext(string txt)
+    /// <summary>
+    /// String配列でplayerSaveDataを引っ張ってくる
+    /// </summary>
+    /// <returns></returns>
+    public string[] Readtext()
     {
         string path = @"..\\Text\lll.txt";
-        string[] data = new string[]
+        string text = File.ReadAllText(path);
+
+        string[] arry = text.Split(':');
+        return arry;
+    }
+
+    /// <summary>
+    /// SaveData用のstringをtextで書き出す
+    /// </summary>
+    /// <param name="d"></param>
+    public void Writetext(ObjState d)
+    {
+        string path = @"..\\Text\lll.txt";
+        string text = d.SaveString;
+
+        File.WriteAllText(path, text);       
+    }
+
+    /// <summary>
+    /// Fileの存在確認
+    /// </summary>
+    /// <returns></returns>
+    public bool IsFileLocked()
+    {
+        string path = @"..\\Text\lll.txt";
+
+        FileStream stream = null;
+
+        try
         {
-            "123","135","146","987","567","123","456",
-        };
-        string text = txt + ':';
-        foreach(string u in data)
-        {
-            text += u + ':';
+            stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
         }
-        
-        File.WriteAllText(path, text);
-        string content = File.ReadAllText(path);
-        string[] splitdata = content.Split(':');
-        Debug.Log(string.Join("\n",splitdata));
+        catch
+        {
+            return true;
+        }
+        finally
+        {
+            if (stream != null)
+            {
+                stream.Close();
+            }
+        }
+
+        return false;
     }
 }

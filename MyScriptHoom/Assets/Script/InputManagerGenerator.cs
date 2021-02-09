@@ -43,7 +43,7 @@ public class InputManagerGenerator : MonoBehaviour
         if (Input.GetKeyDown(keyCodes[1]))
         {
             SaveManager sm = new SaveManager();
-            sm.Writetext("Data");
+            sm.Writetext(CodePlayer.state);
         }
 
         if (Input.GetKeyDown(keyCodes[5]))

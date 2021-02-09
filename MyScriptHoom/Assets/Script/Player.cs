@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : PlayerBaseController
 {
     GameObject NearObj;
+    public ObjState state = new ObjState();
     int flame = 0;
 
     void Start()

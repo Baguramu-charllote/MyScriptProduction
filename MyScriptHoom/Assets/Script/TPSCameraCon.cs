@@ -31,6 +31,7 @@ public class TPSCameraCon : MonoBehaviour
 
         transform.LookAt(lookpos);
     }
+
     /// <summary>
     /// 目標の視点と現在の視点の距離を求める
     /// </summary>
@@ -56,13 +57,13 @@ public class TPSCameraCon : MonoBehaviour
         float distance = vec.magnitude;
 
         float move_distance = 0;
-        if(distance > cameraToplayerDis + playdistance)
+        if(distance > cameraToplayerDis + playdistance) // 遠い時
         {
             move_distance = distance - (cameraToplayerDis + playdistance);
             move_distance *= Time.deltaTime * followSmooth;
             Debug.Log("Long");
         }
-        else if(distance < cameraToplayerDis - playdistance)
+        else if(distance < cameraToplayerDis - playdistance) // 近い時
         {
             move_distance = distance - (cameraToplayerDis - playdistance);
             move_distance *= Time.deltaTime * followSmooth;
