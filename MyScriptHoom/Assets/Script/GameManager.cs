@@ -8,9 +8,9 @@ public class GameManager : Singleton<GameManager>
 {
     [System.NonSerialized] public Vector3 time;
     [System.NonSerialized] public GameObject[] items;
-    public ItemState[] Inventory;//(new ItemState[10]).Select(v=>new ItemState()).ToArray();
-    public Data data;
-     
+    public ItemState[] Inventory;
+    DataManager dataManager = null;
+
     public int ItemCount = 0;
     public int EnemyCount = 0;
     public bool isMoving = false;
@@ -19,10 +19,13 @@ public class GameManager : Singleton<GameManager>
     GameObject[] Magic_Inv;
 
     int itemUiPlayDis = 5;
+    int itemPosPlayDis = 2;
     void Start()
     {
         inventoryObj = GameObject.FindGameObjectWithTag("Inventory");
         OpenInventory();
+
+        dataManager = GameObject.FindGameObjectWithTag("DataBase").GetComponent<DataManager>();
 
         items = GameObject.FindGameObjectsWithTag("Item");
         isMoving = true;
@@ -44,7 +47,7 @@ public class GameManager : Singleton<GameManager>
     void FixedUpdate()
     {
     }
-
+    #region Inventory
     /// <summary>
     /// インベントリを開閉する
     /// </summary>
@@ -58,7 +61,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             inventoryObj.SetActive(!inventoryObj.activeSelf);
-            OpenInventory();
+            //OpenInventory();
             isMoving = false;
         }
     }
@@ -84,9 +87,9 @@ public class GameManager : Singleton<GameManager>
             do
             {
                 UIposX = (-base_Width / 2) + ((base_Width / itemUiXCount) + (itemUiPlayDis * 2)) * i;
-                
+
                 GameObject ui = Instantiate(preUI);
-                ui.transform.parent = inventoryObj.transform;
+                ui.transform.SetParent(inventoryObj.transform, false);
                 ui.GetComponent<RectTransform>().localPosition = new Vector3(UIposX, UIposY, 0);
                 Magic_Inv[CreatedCount] = ui;
                 CreatedCount++; i++;
@@ -103,15 +106,28 @@ public class GameManager : Singleton<GameManager>
         {
             if (Inventory[i] != null)
             {
-                Debug.Log(Inventory[i].val.sprite);
                 Image img = Magic_Inv[i].transform.GetChild(0).GetComponent<Image>();
                 Text text = Magic_Inv[i].transform.GetChild(1).GetComponent<Text>();
-                img.sprite = Inventory[i].val.sprite;
-                text.text = Inventory[i].val.name;
+                //img.sprite = Inventory[i].itemNo;
+                //text.text = Inventory[i].val.name;
             }
         }
     }
+    /// <summary>
+    /// Inventoryにアイテムをしまう
+    /// </summary>
+    /// <param name="item"></param>
+    public void CloseUpInventory(GameObject item)
+    {
+        if (item == null) return;
+        if (item.GetComponent<Item>())
+        {
 
+        }
+    }
+    #endregion
+
+    #region Item
     /// <summary>
     /// 取得したアイテムをマップから消す
     /// </summary>
@@ -121,7 +137,7 @@ public class GameManager : Singleton<GameManager>
         List<GameObject> its = new List<GameObject>();
         GameObject des = null;
 
-        foreach(GameObject g in items)
+        foreach (GameObject g in items)
         {
             if (g.transform.position == it.transform.position)
             {
@@ -135,7 +151,7 @@ public class GameManager : Singleton<GameManager>
 
         items = its.ToArray();
 
-        if(des != null)
+        if (des != null)
         {
             des.transform.position = new Vector3(100, 100, 100);
             //Destroy(des);
@@ -151,9 +167,9 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (GameObject v in items)
         {
-            if (v.transform.position.x - 2 < pos.x && v.transform.position.x + 2 > pos.x)
+            if (v.transform.position.x - itemPosPlayDis < pos.x && v.transform.position.x + itemPosPlayDis > pos.x)
             {
-                if (v.transform.position.z - 2 < pos.z && v.transform.position.z + 2 > pos.z)
+                if (v.transform.position.z - itemPosPlayDis < pos.z && v.transform.position.z + itemPosPlayDis > pos.z)
                 {
                     return v;
                 }
@@ -161,39 +177,8 @@ public class GameManager : Singleton<GameManager>
         }
         return null;
     }
+    #endregion
 
-    public void CloseUpInventory(GameObject item)
-    {
-        if (item == null) return;
-        if (item.GetComponent<Item>())
-        {
-
-        }
-    }
-    //if(NearObj == null)
-    //    {
-    //        return;
-    //    }
-    //    ItemState[] inv = GameManager.instance.Inventory;
-    //int inveLength = inv.Length;
-    //    for (int i = 0; i<inveLength; i++)
-    //    {
-    //        if (inv[i] == null)
-    //        {
-    //            inv[i] = item;
-    //            GameManager.instance.DestroyItem(item);
-    //            item = null;
-    //            return;
-    //        }
-    //        else if (inv[i].val.no == item.val.no)
-    //        {
-    //            inv[i].Count += item.Count;
-    //            GameManager.instance.DestroyItem(item);
-    //            item = null;
-    //            return;
-    //        }
-    //    }
-    //    GameManager.instance.Inventory = inv;
     /// <summary>
     /// ゲーム終了用
     /// </summary>

@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using System.IO;
 
+/// <summary>
+/// SaveManagerとなっているが正確にはSaveに使っているtxtデータにアクセスするだけ
+/// </summary>
 public class SaveManager
 {
     /// <summary>

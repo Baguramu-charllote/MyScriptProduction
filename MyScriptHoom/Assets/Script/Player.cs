@@ -38,6 +38,10 @@ public class Player : PlayerBaseController
         NearObj = GameManager.instance.getValue(transform.position);
     }
 
+    /// <summary>
+    /// そばにあるアイテムをインベントリに回収する。
+    /// ここでの動作はGameManagerにそばのアイテムを教えて渡すこと
+    /// </summary>
     public void GetItem()
     {
         if(NearObj == null)
@@ -46,8 +50,8 @@ public class Player : PlayerBaseController
         }
         ItemState[] inv = GameManager.instance.Inventory;
         ItemState itm = new ItemState();
-        int inveLength = inv.Length;
-        for (int i = 0; i < inveLength; i++)
+        int invLength = inv.Length;
+        for (int i = 0; i < invLength; i++)
         {
             if (inv[i] == null)
             {
@@ -57,7 +61,7 @@ public class Player : PlayerBaseController
                 NearObj = null;
                 return;
             }
-            else if (inv[i].val.no == itm.val.no)
+            else if (inv[i].itemNo == itm.itemNo)
             {
                 inv[i].Count += itm.Count;
                 GameManager.instance.DestroyItem(NearObj);
