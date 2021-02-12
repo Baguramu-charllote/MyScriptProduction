@@ -14,19 +14,37 @@ public class GameManager : Singleton<GameManager>
     public int ItemCount = 0;
     public int EnemyCount = 0;
     public bool isMoving = false;
+
     GameObject preUI;
     GameObject inventoryObj;
     GameObject[] Magic_Inv;
 
+    RectTransform canvasRectTfm;
+    Transform targetTfm;
+    RectTransform UIRectTfm;
+
+    bool isNearObj = false;
+
     int itemUiPlayDis = 5;
     int itemPosPlayDis = 2;
+    Vector3 offset = new Vector3(0,1.5f,0);
     void Start()
     {
+        //UIを出現させる準備
+        GameObject canvas = GameObject.Find("Canvas");
+        canvasRectTfm = canvas.GetComponent<RectTransform>();
+        GameObject ui = Instantiate((GameObject)Resources.Load("NearItem"));
+        ui.transform.parent = canvas.transform;
+        UIRectTfm = ui.GetComponent<RectTransform>();
+        UIRectTfm.position = new Vector3(10000, 10000, 0);
+
+        //InventoryのUIを準備
         inventoryObj = GameObject.FindGameObjectWithTag("Inventory");
         OpenInventory();
-
+                
         dataManager = GameObject.FindGameObjectWithTag("DataBase").GetComponent<DataManager>();
 
+        //Scene上のアイテムをすべて参照
         items = GameObject.FindGameObjectsWithTag("Item");
         isMoving = true;
 
@@ -47,6 +65,7 @@ public class GameManager : Singleton<GameManager>
     void FixedUpdate()
     {
     }
+
     #region Inventory
     /// <summary>
     /// インベントリを開閉する
@@ -61,7 +80,7 @@ public class GameManager : Singleton<GameManager>
         else
         {
             inventoryObj.SetActive(!inventoryObj.activeSelf);
-            //OpenInventory();
+            OpenInventory();
             isMoving = false;
         }
     }
@@ -108,8 +127,8 @@ public class GameManager : Singleton<GameManager>
             {
                 Image img = Magic_Inv[i].transform.GetChild(0).GetComponent<Image>();
                 Text text = Magic_Inv[i].transform.GetChild(1).GetComponent<Text>();
-                //img.sprite = Inventory[i].itemNo;
-                //text.text = Inventory[i].val.name;
+                img.sprite = DataManager.instance.ReturnValue(Inventory[i]).sprite;
+                text.text = DataManager.instance.ReturnValue(Inventory[i]).name;
             }
         }
     }
@@ -120,9 +139,23 @@ public class GameManager : Singleton<GameManager>
     public void CloseUpInventory(GameObject item)
     {
         if (item == null) return;
-        if (item.GetComponent<Item>())
+        if (item.GetComponent<ItemState>())
         {
-
+            ItemState state = item.GetComponent<ItemState>();
+            for (int i = 0; i < Inventory.Length; i++) {
+                if (Inventory[i] == null)
+                {
+                    Inventory[i] = state;
+                    DestroyItem(item);
+                    break;
+                }
+                else if (state.itemNo == Inventory[i].itemNo)
+                {
+                    Inventory[i].Count = state.Count;
+                    DestroyItem(item);
+                    break;
+                }
+            }
         }
     }
     #endregion
@@ -171,11 +204,28 @@ public class GameManager : Singleton<GameManager>
             {
                 if (v.transform.position.z - itemPosPlayDis < pos.z && v.transform.position.z + itemPosPlayDis > pos.z)
                 {
+                    targetTfm = v.transform;
+                    CauthUISporn();
+                    isNearObj = true;
                     return v;
                 }
             }
         }
+        UIRectTfm.position = new Vector3(10000, 100000, 0);
+        isNearObj = false;
         return null;
+    }
+
+    void CauthUISporn()
+    {
+        if (isNearObj)
+        {
+            Vector2 pos = Vector2.zero ;
+            Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, targetTfm.position + offset);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTfm, screenPos, Camera.main, out pos);
+            UIRectTfm.position = pos;
+            Debug.Log(screenPos.ToString());
+        }
     }
     #endregion
 

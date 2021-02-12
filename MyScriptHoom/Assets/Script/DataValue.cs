@@ -11,7 +11,7 @@ public struct Values
     public string name;         // アイテムの名前
     public int no;              // アイテムのデータNo
     public int Eff;             // アイテムのスキルNo
-    public ItemType itm_type;   // アイテムの種類
+    public ItemType[] itm_type;   // アイテムの種類
     public Sprite sprite;       // アイテムアイコンのイラスト
     public Mesh mesh;           // アイテムの3dデータ
     public Material material;   // アイテムのマテリアルデータ

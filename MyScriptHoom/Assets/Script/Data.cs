@@ -15,11 +15,11 @@ using UnityEditor;
 public class Data : ScriptableObject
 {
     [SerializeField] GameObject objects = null;
-    public Values[] data;
+    public Values[] Itemdata;
 
     public virtual void Save()
     {
-        data = new Values[objects.transform.childCount];
+        Itemdata = new Values[objects.transform.childCount];
         GameObject a = null;
         DataValue d = null;
         for (int i = 0;i<objects.transform.childCount;i++)
@@ -27,16 +27,14 @@ public class Data : ScriptableObject
             a = objects.transform.GetChild(i).gameObject;
             d = a.GetComponent<DataValue>();
             Values t = d.val;
-            //DestroyImmediate(d,true);
-            //t.obj = a;
-            data[i] = t;
+            Itemdata[i] = t;
         }
     }
 
     public virtual void Save(Values d)
     {
-        List<Values> list = new List<Values>(data);
+        List<Values> list = new List<Values>(Itemdata);
         list.Add(d);
-        data = list.ToArray();
+        Itemdata = list.ToArray();
     }
 }

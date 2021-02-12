@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct CharaState
+{
+    public string name ;
+    public int MaxHp ;
+    public int Atk ;
+    public int Def ;
+    public int Agi ;
+    public int NextLebel ;
+    //skill(行動)の配列を作る
+}
 public class ObjState
 {
    [SerializeField] string name = null;
@@ -11,6 +21,17 @@ public class ObjState
    [SerializeField] int Def = 0;
    [SerializeField] int Agi = 0;
    [SerializeField] int NextLebel = 0;
+
+    public ObjState(CharaState chara)
+    {
+        name = chara.name;
+        MaxHp = chara.MaxHp;
+        Hp = MaxHp;
+        Atk = chara.Atk;
+        Def = chara.Def;
+        Agi = chara.Agi;
+        NextLebel = chara.NextLebel;
+    }
 
     // Saveに使う----------------
     public string SaveString

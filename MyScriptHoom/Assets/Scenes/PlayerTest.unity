@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeb411fabdde1343b0a644de60b8001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNo: 0
-  Count: 0
+  itemNo: 1
+  Count: 2
   pos: {x: 0, y: 0, z: 0}
 --- !u!1 &526087602
 GameObject:
@@ -444,8 +444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeb411fabdde1343b0a644de60b8001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNo: 0
-  Count: 0
+  itemNo: 2
+  Count: 3
   pos: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -6083,8 +6083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeb411fabdde1343b0a644de60b8001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNo: 0
-  Count: 0
+  itemNo: 3
+  Count: 1
   pos: {x: 0, y: 0, z: 0}
 --- !u!1001 &4199938477602744445
 PrefabInstance:
@@ -6151,7 +6151,7 @@ PrefabInstance:
     - target: {fileID: 4199938478085832555, guid: 66bdcd2c1dbeb0940a949a3f3881d0de,
         type: 3}
       propertyPath: isRayGround
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4199938478085832555, guid: 66bdcd2c1dbeb0940a949a3f3881d0de,
         type: 3}

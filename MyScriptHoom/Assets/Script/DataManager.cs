@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class DataManager : Singleton<DataManager>
 {
     [SerializeField] Data data = null;
      
@@ -14,7 +14,7 @@ public class DataManager : MonoBehaviour
     public Values ReturnValue(ItemState item)
     {
         Values itemValue = new Values();
-        foreach(Values v in data.data)
+        foreach(Values v in data.Itemdata)
         {
             if(v.no == item.itemNo)
             {

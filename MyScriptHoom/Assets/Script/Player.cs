@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : PlayerBaseController
 {
+    public ObjState state;
+
     GameObject NearObj;
-    public ObjState state = new ObjState();
     int flame = 0;
 
     void Start()
@@ -48,27 +49,6 @@ public class Player : PlayerBaseController
         {
             return;
         }
-        ItemState[] inv = GameManager.instance.Inventory;
-        ItemState itm = new ItemState();
-        int invLength = inv.Length;
-        for (int i = 0; i < invLength; i++)
-        {
-            if (inv[i] == null)
-            {
-                itm = NearObj.GetComponent<ItemState>();
-                inv[i] = itm;
-                GameManager.instance.DestroyItem(NearObj);
-                NearObj = null;
-                return;
-            }
-            else if (inv[i].itemNo == itm.itemNo)
-            {
-                inv[i].Count += itm.Count;
-                GameManager.instance.DestroyItem(NearObj);
-                NearObj = null;
-                return;
-            }
-        }
-        GameManager.instance.Inventory = inv;
+        GameManager.instance.CloseUpInventory(NearObj);
     }
 }

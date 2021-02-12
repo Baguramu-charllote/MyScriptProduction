@@ -13,39 +13,42 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   objects: {fileID: 2147291914292226281, guid: c8cbc59c0ba4f044da828efd0e16e960, type: 3}
-  data:
-  - name: 
+  Itemdata:
+  - name: "\u30A6\u30F3\u30C1"
     no: 0
     Eff: 0
-    itm_type: 0
+    itm_type: 
     sprite: {fileID: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}
+  - name: "\u85AC\u8349"
+    no: 1
+    Eff: 0
+    itm_type: 0000000001000000
+    sprite: {fileID: 21300000, guid: dc121214762f5814d9b5e164e5c4b02a, type: 3}
+    mesh: {fileID: 8707020275976044490, guid: 3d0362e06efabdf4f8905789e8667928, type: 3}
+    material: {fileID: -876546973899608171, guid: 3d0362e06efabdf4f8905789e8667928,
+      type: 3}
+  - name: "\u4E0A\u85AC\u8349"
+    no: 2
+    Eff: 0
+    itm_type: 0000000001000000
+    sprite: {fileID: 21300000, guid: dc121214762f5814d9b5e164e5c4b02a, type: 3}
+    mesh: {fileID: 8707020275976044490, guid: 3d0362e06efabdf4f8905789e8667928, type: 3}
+    material: {fileID: -876546973899608171, guid: 3d0362e06efabdf4f8905789e8667928,
+      type: 3}
+  - name: "\u7279\u85AC\u8349"
+    no: 3
+    Eff: 0
+    itm_type: 0000000001000000
+    sprite: {fileID: 21300000, guid: dc121214762f5814d9b5e164e5c4b02a, type: 3}
+    mesh: {fileID: 8707020275976044490, guid: 3d0362e06efabdf4f8905789e8667928, type: 3}
+    material: {fileID: -876546973899608171, guid: 3d0362e06efabdf4f8905789e8667928,
+      type: 3}
   - name: 
     no: 0
     Eff: 0
-    itm_type: 0
-    sprite: {fileID: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-  - name: 
-    no: 0
-    Eff: 0
-    itm_type: 0
-    sprite: {fileID: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-  - name: 
-    no: 0
-    Eff: 0
-    itm_type: 0
-    sprite: {fileID: 0}
-    mesh: {fileID: 0}
-    material: {fileID: 0}
-  - name: 
-    no: 0
-    Eff: 0
-    itm_type: 0
+    itm_type: 
     sprite: {fileID: 0}
     mesh: {fileID: 0}
     material: {fileID: 0}

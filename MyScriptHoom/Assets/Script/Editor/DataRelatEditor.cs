@@ -20,6 +20,10 @@ public class DataRelatEditor : Editor
                 data.Save();
                 EditorUtility.SetDirty(data);
             }
+            if (GUILayout.Button("Update"))
+            {
+                EditorUtility.SetDirty(data);
+            }
         }
     }
 }
