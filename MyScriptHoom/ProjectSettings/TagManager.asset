@@ -7,6 +7,7 @@ TagManager:
   - Item
   - Inventory
   - DataBase
+  - Wall
   layers:
   - Default
   - TransparentFX
