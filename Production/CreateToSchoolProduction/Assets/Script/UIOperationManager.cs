@@ -39,7 +39,7 @@ public class UIOperationManager:MonoBehaviour
     {
         UIs = objs;
         Transform parent = UIs[0].transform;
-        bool[] a = UIs.Select(n => { n.transform.parent = parent; Debug.Log(n.transform.parent); return true;}).ToArray();
+        bool[] a = UIs.Select(n => { n.transform.parent = parent; Debug.Log(n.transform.parent); return true; }).ToArray();
         Buttons = SpecifyGetChild("Button", UIs[0].transform.Find("select").gameObject);
         selectcnt = Buttons.Length;
         OpenUI();
@@ -110,8 +110,16 @@ public class UIOperationManager:MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// 選択しているUIを利用できる状態にする
+    /// </summary>
     public void DecisionUI()
     {
+        if (UIs[cnt].transform.Find("select").childCount > 0)
+        {
+            Buttons = SpecifyGetChild("Button", UIs[cnt].transform.Find("select").gameObject);
+        }
+
 
     }
 
@@ -123,12 +131,19 @@ public class UIOperationManager:MonoBehaviour
         UIs[(int)UIStatus.Menu].SetActive(!UIs[(int)UIStatus.Menu].activeSelf);
         UIs[(int)UIStatus.Status].SetActive(UIs[(int)UIStatus.Menu].activeSelf);
         Buttons[cnt - 1].GetComponent<Image>().color = Color.grey;
+        
         if (UIs[(int)UIStatus.Menu].activeSelf)
         {
             Buttons = SpecifyGetChild("Button", UIs[(int)UIStatus.Menu].transform.Find("select").gameObject);
             selectcnt = Buttons.Length;
         }
-        else { cnt = 1; }
+        else
+        {
+            bool[] a = Buttons.Select(n =>
+            { n.GetComponent<Image>().color = Color.white; return true; }
+            ).ToArray();
+        }
+
         foreach (GameObject a in UIs.Select(n => n != UIs[(int)UIStatus.Menu] || n != UIs[(int)UIStatus.Status] ? null : n))
         {
             if (a != null)
@@ -139,6 +154,7 @@ public class UIOperationManager:MonoBehaviour
                 }
             }
         }
+
         isOpenUI = UIs[(int)UIStatus.Menu].activeSelf;
         Debug.Log(isOpenUI);
     }

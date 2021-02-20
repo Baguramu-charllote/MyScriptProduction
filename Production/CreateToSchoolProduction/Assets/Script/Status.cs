@@ -13,25 +13,26 @@ public struct StatusValue
     public string name;
     public int Hp;
     public int MaxHp;
-    public int Stamina;
-    public int MaxStamina;
+    public int Atk;
+    public int Agi;
     public int Cost;
     public int Enlightenment;
     public int[] Skill;
     public int[] Item;
     public StatusValue(int i = 0)
     {
-        name = "Blood slurping";
+        name = "sawai";
         Hp = i;
         MaxHp = i;
-        MaxStamina = i;
-        Stamina = i;
+        Atk = i;
+        Agi = i;
         Cost = i;
         Enlightenment = i;
         Skill = Enumerable.Repeat(i, 3).ToArray();
         Item = Enumerable.Repeat(i,5).ToArray();
     }
 }
+
 /// <summary>
 /// playerのステータスを構うClass
 /// セーブロードから
@@ -52,25 +53,8 @@ public class Status
     {
         get
         {
-            string data = ""/*status.name + ':'*/;
-            //data += status.Hp.ToString() + ':';
-            //data += status.MaxHp.ToString() + ':';
-            //data += status.MaxStamina.ToString() + ':';
-            //data += status.Cost.ToString() + ':';
-            //data += status.Enlightenment.ToString() + ':';
-            //foreach(int i in status.Skill)
-            //{
-            //    data += i.ToString() + ',';
-            //}
-            //data = data.Remove(data.Length-1,1);
-            //data += ':'; 
-            //foreach(int i in status.Item)
-            //{
-            //    data += i.ToString() + ',';
-            //}
-            //data = data.Remove(data.Length - 1,1);
+            string data = "";
 
-            // 上を短くしたい↓
             FieldInfo[] info = status.GetType().GetFields();
             foreach (FieldInfo i in info)
             {
@@ -107,9 +91,9 @@ public class Status
             status.name = v[0];
             status.Hp = int.Parse(v[1]);
             status.MaxHp = int.Parse(v[2]);
-            status.MaxStamina = int.Parse(v[3]);
+            status.Atk = int.Parse(v[3]);
             status.Cost = int.Parse(v[4]);
-            status.Enlightenment = int.Parse(v[5]); 
+            status.Enlightenment = int.Parse(v[5]);
             string[] skill = v[6].Split(',');
             string[] item = v[7].Split(',');
             int a = 0;
@@ -124,6 +108,30 @@ public class Status
                 status.Item[a] = int.Parse(i);
                 a++;
             }
+
+            // わからなかった
+            //int cnt = 0;
+            //FieldInfo[] info = status.GetType().GetFields();
+            //foreach (FieldInfo i in info)
+            //{
+            //    Type t = i.GetValue(status).GetType();
+            //    if (t.IsValueType || t == typeof(String))　//　値型の時
+            //    {
+            //        i.SetValue(status, int.Parse(v[cnt]));
+            //    }
+            //    else                 // 値型じゃない時
+            //    {
+            //        if (t.IsArray)
+            //        {
+            //            foreach (string str in v[cnt].Split(','))
+            //            {
+
+            //            }
+            //        }
+            //    }
+            //    cnt++;
+            //}
+
         }
     }
 }
