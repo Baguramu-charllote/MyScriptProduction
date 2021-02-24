@@ -16,40 +16,16 @@ MonoBehaviour:
   - no: 0
     EntryEnemy:
     - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
+      SpornPos: {x: -3, y: 0, z: -4}
       Scale: {x: 0, y: 0, z: 0}
     - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
+      SpornPos: {x: 1, y: 0, z: 3}
       Scale: {x: 0, y: 0, z: 0}
-    WallEntry: []
-  - no: 0
-    EntryEnemy: []
-    WallEntry: []
-  - no: 0
-    EntryEnemy:
+    WallEntry:
     - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
+      SpornPos: {x: 0, y: 0, z: 5}
+      Scale: {x: 10, y: 1, z: 1}
     - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
-    - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
-    - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
-    - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
-    - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
-    - id: 0
-      SpornPos: {x: 0, y: 0, z: 0}
-      Scale: {x: 0, y: 0, z: 0}
-    WallEntry: []
-  - no: 0
-    EntryEnemy: []
-    WallEntry: []
+      SpornPos: {x: 0, y: 0, z: -5}
+      Scale: {x: 10, y: 1, z: 1}
   wall: []

@@ -39,6 +39,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        CreateMap();
     }
 
     void Update()
@@ -49,7 +50,6 @@ public class GameManager : Singleton<GameManager>
     public void test()
     {
         string a = s.SaveString;
-        Debug.Log(a);
     }
 
     void GetInput()
@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
             
             if (Input.GetKeyDown(KeyCode.Return))
             {
-
+                uimanagr.DecisionUI();
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -83,7 +83,39 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void CreateMap()
     {
+        int rnd = Random.Range(0, 9);
+        SceneState state = datamanager.SceneValueOut(rnd);
+        ObjInfo wall = datamanager.wall;
 
+        // 壁の生成
+        for (int i = 0; i < state.WallEntry.Length; i++)
+        {
+            GameObject obj = new GameObject();
+            obj.name = "Wall" + i.ToString();
+
+            obj.AddComponent<MeshFilter>();
+            obj.AddComponent<MeshRenderer>();
+
+            obj.GetComponent<MeshFilter>().mesh = wall.mesh;
+            obj.GetComponent<MeshRenderer>().material = wall.material;
+
+            obj.transform.position = state.WallEntry[i].SpornPos;
+            obj.transform.localScale = state.WallEntry[i].Scale;
+        }
+        // 敵の生成
+        for (int i = 0; i < state.EntryEnemy.Length; i++)
+        {
+            GameObject obj = new GameObject();
+            obj.name = "Enemy" + i.ToString();
+            EnemyStatus enemy = datamanager.EnemyValueOut(state.EntryEnemy[i].id);
+            obj.AddComponent<MeshFilter>();
+            obj.AddComponent<MeshRenderer>();
+
+            obj.GetComponent<MeshFilter>().mesh = enemy.mesh;
+            obj.GetComponent<MeshRenderer>().material = enemy.material;
+
+            obj.transform.position = state.EntryEnemy[i].SpornPos;
+        }
     }
 
     public void Quit()

@@ -331,6 +331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8457153412101029218, guid: ff7c754848ebce3498ffe1def67a4f8b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8811175691907245324, guid: ff7c754848ebce3498ffe1def67a4f8b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -650,7 +655,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -729,10 +734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1000, y: 800}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -748,7 +753,7 @@ Canvas:
   m_GameObject: {fileID: 1548696104}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -916,7 +921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a32184eb01bbf4d9ae6449c93fdbca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneD: {fileID: 0}
-  EnemyD: {fileID: 0}
-  skillD: {fileID: 0}
-  ItemD: {fileID: 0}
+  SceneD: {fileID: 11400000, guid: a69127f777bf4ae4d8b07ae5352e97c4, type: 2}
+  EnemyD: {fileID: 11400000, guid: 7c427df51ce2db5488a37a483263cee8, type: 2}
+  skillD: {fileID: 11400000, guid: 44a9767395d50cd499e4415255f853f3, type: 2}
+  ItemD: {fileID: 11400000, guid: 4f7ae0232ba85174d932b475de6f6487, type: 2}
+  uiprefab1: {fileID: 4741578298305097885, guid: fcc9d2d6c2526ea449418e061f1503cc,
+    type: 3}
+  wall:
+    mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    material: {fileID: 2100000, guid: 2456d9ec9ec61fb45afc0c7ef1587c1f, type: 2}

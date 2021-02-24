@@ -15,5 +15,5 @@ public class SceneDetail
 {
     public int id;
     public Vector3 SpornPos;
-    public Vector3 Scale;
+    public Vector3 Scale = Vector3.one;
 }

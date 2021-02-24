@@ -2,12 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct ObjInfo
+{
+    public Mesh mesh;
+    public Material material;
+}
+
 public class DataManager : Singleton<DataManager>
 {
     [SerializeField] SceneData SceneD = null;
     [SerializeField] EnemyData EnemyD = null;
     [SerializeField] SkillData skillD = null;
     [SerializeField] ItemData  ItemD  = null;
+
+    public GameObject uiprefab1;
+    public ObjInfo wall;
+
+    private void Awake()
+    {
+    }
 
     public SceneState SceneValueOut(int no)
     {

@@ -18,6 +18,8 @@ public class UIOperationManager:MonoBehaviour
     int cnt = 1;            // 選択されているButton
     int selectcnt = 0;      // 現在のButtonの数
 
+    UIStatus now = UIStatus.Menu;
+
     bool isOpenUI = false;
     /// <summary>
     /// 選択されているUIの種別
@@ -39,7 +41,9 @@ public class UIOperationManager:MonoBehaviour
     {
         UIs = objs;
         Transform parent = UIs[0].transform;
-        bool[] a = UIs.Select(n => { n.transform.parent = parent; Debug.Log(n.transform.parent); return true; }).ToArray();
+        bool[] a = UIs.Select(n => { n.transform.parent = parent; return true; }).ToArray();
+        //foreach(Transform t in UIs[(int)UIStatus.Skill].GetComponentsInChildren(typeof(Transform)))
+        SetUIPos(new Vector2(3, 1), UIs[(int)UIStatus.Skill].transform.GetChild(1).gameObject, DataManager.instance.uiprefab1);        
         Buttons = SpecifyGetChild("Button", UIs[0].transform.Find("select").gameObject);
         selectcnt = Buttons.Length;
         OpenUI();
@@ -83,6 +87,28 @@ public class UIOperationManager:MonoBehaviour
         }
         return objList.ToArray();
     }
+    
+    void SetUIPos(Vector2 length,GameObject parent,GameObject prefab)
+    {
+        RectTransform Prect = parent.GetComponent<RectTransform>();
+        Vector2 distance = new Vector2(
+            Prect.sizeDelta.x / length.x,
+            Prect.sizeDelta.y / length.y
+            );
+        GameObject obj = null ;
+        Vector2 realdis = new Vector2(-distance.x * (int)(length.x / 2),distance.y * (int)(length.y / 2));
+        Debug.Log("Dis:" + distance + "\nrealDis:" + realdis);
+        for (int i = 1;i <= length.y; i++)
+        {
+            for(int j = 1;j<= length.x; j++)
+            {
+                obj = Instantiate(prefab);
+                obj.transform.parent = parent.transform;
+                obj.GetComponent<RectTransform>().position = new Vector2(Prect.position.x, Prect.position.y) + realdis;
+                realdis.x += distance.x;
+            }
+        }
+    }
 
     /// <summary>
     /// 選択肢を切り替える
@@ -105,7 +131,8 @@ public class UIOperationManager:MonoBehaviour
                 { cnt--; }
                 else { cnt = selectcnt; }
             }
-            Buttons[cnt - 1].GetComponent<Image>().color = Color.grey;
+            Buttons[cnt - 1].GetComponent<Image>().color = Color.gray;
+            // Buttons[cnt - 1].GetComponent<Button>().Select();
             DeploymentOptionUI();
         }
     }
@@ -120,7 +147,7 @@ public class UIOperationManager:MonoBehaviour
             Buttons = SpecifyGetChild("Button", UIs[cnt].transform.Find("select").gameObject);
         }
 
-
+        now = (UIStatus)cnt;
     }
 
     /// <summary>
@@ -156,7 +183,6 @@ public class UIOperationManager:MonoBehaviour
         }
 
         isOpenUI = UIs[(int)UIStatus.Menu].activeSelf;
-        Debug.Log(isOpenUI);
     }
 
     /// <summary>

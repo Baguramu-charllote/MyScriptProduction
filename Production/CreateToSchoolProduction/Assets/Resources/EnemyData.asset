@@ -13,26 +13,12 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   aData:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - name: pre
+    no: 0
+    MaxHp: 0
+    Hp: 0
+    Atk: 0
+    SkillNo: 0
+    Experience: 0
+    mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+    material: {fileID: 2100000, guid: b63532716af4c0d43ac680a01f17550f, type: 2}
