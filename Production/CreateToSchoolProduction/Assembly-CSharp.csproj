@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\DataManager.cs" />
     <Compile Include="Assets\Script\EnemyData.cs" />
     <Compile Include="Assets\Script\EnemyStatus.cs" />
+    <Compile Include="Assets\Script\Enemysearch.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\ItemData.cs" />
     <Compile Include="Assets\Script\ItemState.cs" />

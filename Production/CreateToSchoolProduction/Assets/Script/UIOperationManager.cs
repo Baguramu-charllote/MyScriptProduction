@@ -41,10 +41,26 @@ public class UIOperationManager:MonoBehaviour
     {
         UIs = objs;
         Transform parent = UIs[0].transform;
-        bool[] a = UIs.Select(n => { n.transform.parent = parent; return true; }).ToArray();
-        //foreach(Transform t in UIs[(int)UIStatus.Skill].GetComponentsInChildren(typeof(Transform)))
-        SetUIPos(new Vector2(3, 1), UIs[(int)UIStatus.Skill].transform.GetChild(1).gameObject, DataManager.instance.uiprefab1);        
+        bool[] a = UIs.Select(n => { n.transform.parent = parent; return true; }).ToArray();    
+        // メニューのselectを追加する
         Buttons = SpecifyGetChild("Button", UIs[0].transform.Find("select").gameObject);
+        // ステータスの記入
+        {
+            StatusValue state = GameManager.instance.s.status;
+
+        }
+        // スキルの表示をできるようにする
+        {
+            GameObject[] cartridge = SpecifyGetChild("Cartridge", UIs[2].transform.Find("List").gameObject);
+            for (int i = 0; i < DataManager.instance.SkillCount; i++)
+            {
+                cartridge[i].GetComponent<Image>().sprite = DataManager.instance.SkillValueOut(i).sprite;
+            }
+            for (int i = DataManager.instance.SkillCount; i < DataManager.instance.PSkillCount; i++)
+            {
+                cartridge[i].GetComponent<Image>().sprite = DataManager.instance.PskillValueOut(i).sprite;
+            }
+        }
         selectcnt = Buttons.Length;
         OpenUI();
     }
@@ -88,28 +104,6 @@ public class UIOperationManager:MonoBehaviour
         return objList.ToArray();
     }
     
-    void SetUIPos(Vector2 length,GameObject parent,GameObject prefab)
-    {
-        RectTransform Prect = parent.GetComponent<RectTransform>();
-        Vector2 distance = new Vector2(
-            Prect.sizeDelta.x / length.x,
-            Prect.sizeDelta.y / length.y
-            );
-        GameObject obj = null ;
-        Vector2 realdis = new Vector2(-distance.x * (int)(length.x / 2),distance.y * (int)(length.y / 2));
-        Debug.Log("Dis:" + distance + "\nrealDis:" + realdis);
-        for (int i = 1;i <= length.y; i++)
-        {
-            for(int j = 1;j<= length.x; j++)
-            {
-                obj = Instantiate(prefab);
-                obj.transform.parent = parent.transform;
-                obj.GetComponent<RectTransform>().position = new Vector2(Prect.position.x, Prect.position.y) + realdis;
-                realdis.x += distance.x;
-            }
-        }
-    }
-
     /// <summary>
     /// 選択肢を切り替える
     /// </summary>
@@ -170,7 +164,6 @@ public class UIOperationManager:MonoBehaviour
             { n.GetComponent<Image>().color = Color.white; return true; }
             ).ToArray();
         }
-
         foreach (GameObject a in UIs.Select(n => n != UIs[(int)UIStatus.Menu] || n != UIs[(int)UIStatus.Status] ? null : n))
         {
             if (a != null)

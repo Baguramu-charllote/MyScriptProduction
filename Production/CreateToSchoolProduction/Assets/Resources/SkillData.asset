@@ -16,19 +16,153 @@ MonoBehaviour:
   - name: 
     cost: 0
     Etype: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - name: 
     cost: 0
     Etype: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - name: 
     cost: 0
     Etype: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - name: 
     cost: 0
     Etype: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - name: 
     cost: 0
     Etype: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - name: 
     cost: 0
     Etype: 0
-  pData: []
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  - name: 
+    cost: 0
+    Etype: 0
+    sprite: {fileID: 0}
+  pData:
+  - name: AtkUP1
+    cost: 1
+    effect: 0
+    Power: 5
+    sprite: {fileID: 0}
+  - name: AtkUP2
+    cost: 2
+    effect: 0
+    Power: 10
+    sprite: {fileID: 0}
+  - name: AgiUP1
+    cost: 1
+    effect: 1
+    Power: 5
+    sprite: {fileID: 0}
+  - name: AgiUP2
+    cost: 2
+    effect: 1
+    Power: 10
+    sprite: {fileID: 0}
+  - name: DefUP1
+    cost: 1
+    effect: 2
+    Power: 5
+    sprite: {fileID: 0}
+  - name: DefUP2
+    cost: 2
+    effect: 2
+    Power: 10
+    sprite: {fileID: 0}
+  - name: CosUP1
+    cost: 0
+    effect: 3
+    Power: 1
+    sprite: {fileID: 0}
+  - name: CosUP2
+    cost: 0
+    effect: 3
+    Power: 2
+    sprite: {fileID: 0}

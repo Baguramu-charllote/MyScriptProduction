@@ -22,7 +22,6 @@ public class DataManager : Singleton<DataManager>
     private void Awake()
     {
     }
-
     public SceneState SceneValueOut(int no)
     {
         return SceneD.ValueOut(no);
@@ -31,6 +30,8 @@ public class DataManager : Singleton<DataManager>
     {
         return skillD.ValueOut(no);
     }
+    public int SkillCount { get { return skillD.SkillCount; } }
+    public int PSkillCount { get { return skillD.PassiveSkillCount; } }
     public PskillStatus PskillValueOut(int no)
     {
         return skillD.PValueOut(no);

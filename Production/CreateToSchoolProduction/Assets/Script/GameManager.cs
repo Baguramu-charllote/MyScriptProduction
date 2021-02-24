@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject UI = null;
 
     // Playerのステータス
-    Status s;
+    [System.NonSerialized] public Status s;
 
     DataManager datamanager;
 
@@ -69,6 +69,7 @@ public class GameManager : Singleton<GameManager>
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 uimanagr.DecisionUI();
+                Debug.Log(Enemysearch.instance.NearEnemy().ToString());
             }
 
             if (Input.GetKeyDown(KeyCode.Space))

@@ -8,7 +8,7 @@ public class SkillStatus
     public string name = "";
     public int cost = 0;
     public EffectType Etype;
-    
+    public Sprite sprite;
     public enum EffectType
     {
         Attack,     // 物理
@@ -20,5 +20,13 @@ public class PskillStatus
 {
     public string name = "";
     public int cost = 0;
-    public enum EffectType { }
+    public EffectType effect;
+    public int Power;
+    public Sprite sprite;
+    public enum EffectType {
+        Atk,
+        Agi,
+        Def,
+        Cos,
+    }
 }

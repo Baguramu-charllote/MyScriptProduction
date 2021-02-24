@@ -10,6 +10,10 @@ public class SkillData : Data<SkillStatus>
     {
         base.Save();
     }
+
+    public int SkillCount { get { return aData.Length; } }
+    public int PassiveSkillCount { get { return pData.Length; } }
+
     public override SkillStatus ValueOut(int no)
     {
         for (int i = 0; i < aData.Length; i++)
