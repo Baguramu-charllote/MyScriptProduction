@@ -18,9 +18,13 @@ public class GameManager : Singleton<GameManager>
     // skillを獲得したときこの配列に入れる
     int[] Inventory = new int[64];
 
+    // 押した判定をとるためのbool配列
+    bool[] keys;
+  
     [System.NonSerialized] public UIOperationManager uimanagr;
 
     RectTransform CanvasRT;
+    #region Unity
 
     void Awake()
     {
@@ -47,34 +51,60 @@ public class GameManager : Singleton<GameManager>
         GetInput();
     }
 
+    void FixedUpdate()
+    {
+        
+    }
+
+    #endregion
+
+    #region propaty
+    public bool IsOpenUI { get { return uimanagr.isOpenUI; } }
+
+    #endregion
+
+
+    #region public
     public void test()
     {
         string a = s.SaveString;
     }
+    public bool onkeydown(KeyCode code)
+    {
+        bool onkey = false;
 
+        return onkey;
+    }
+    #endregion
+
+    #region private
     void GetInput()
     {
         if (Input.anyKeyDown)
         {
-            //UIにおいてのkeyでの入力受け取り
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                uimanagr.OpenUI();
+            }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 uimanagr.SelectUI(true);
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 uimanagr.SelectUI(false);
             }
-            
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 uimanagr.DecisionUI();
-                Debug.Log(Enemysearch.instance.NearEnemy().ToString());
             }
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                uimanagr.OpenUI();
+
             }
         }
     }
@@ -127,4 +157,5 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
 #endif
     }
+    #endregion
 }

@@ -9,160 +9,144 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8549000ef470e54ba19bc555f910343, type: 3}
+  m_Script: {fileID: 11500000, guid: defe185e8ba126c4e8f7acf39552a602, type: 3}
   m_Name: SkillData
   m_EditorClassIdentifier: 
   aData:
-  - name: 
+  - name: tasukete
     cost: 0
     Etype: 0
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: tezina
     cost: 0
     Etype: 0
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: nanahusigi
     cost: 0
     Etype: 0
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: girisya
     cost: 0
     Etype: 0
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: yasiro
     cost: 0
     Etype: 0
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: rousoku
     cost: 0
     Etype: 0
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: kuzira
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: rakkasei
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: ikasui
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: ika
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: karusiumu
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: mukuti
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: tijoue
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: ekubo
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: bottakuri
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: risei
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: ikaruga
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: garyoku
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: kurasu
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: suzume
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: menntama
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: makkura
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: ranndamu
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - name: murisinjyu
     cost: 0
     Etype: 0
-    sprite: {fileID: 0}
-  - name: 
-    cost: 0
-    Etype: 0
-    sprite: {fileID: 0}
-  - name: 
-    cost: 0
-    Etype: 0
-    sprite: {fileID: 0}
-  - name: 
-    cost: 0
-    Etype: 0
-    sprite: {fileID: 0}
-  - name: 
-    cost: 0
-    Etype: 0
-    sprite: {fileID: 0}
+    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   pData:
-  - name: AtkUP1
-    cost: 1
-    effect: 0
-    Power: 5
-    sprite: {fileID: 0}
-  - name: AtkUP2
-    cost: 2
-    effect: 0
-    Power: 10
-    sprite: {fileID: 0}
-  - name: AgiUP1
-    cost: 1
-    effect: 1
-    Power: 5
-    sprite: {fileID: 0}
-  - name: AgiUP2
-    cost: 2
-    effect: 1
-    Power: 10
-    sprite: {fileID: 0}
-  - name: DefUP1
-    cost: 1
-    effect: 2
-    Power: 5
-    sprite: {fileID: 0}
-  - name: DefUP2
-    cost: 2
-    effect: 2
-    Power: 10
-    sprite: {fileID: 0}
-  - name: CosUP1
+  - name: mekuramasi
     cost: 0
-    effect: 3
-    Power: 1
-    sprite: {fileID: 0}
-  - name: CosUP2
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: sirimeturetu
     cost: 0
-    effect: 3
-    Power: 2
-    sprite: {fileID: 0}
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: tumiki
+    cost: 0
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: kikurage
+    cost: 0
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: gekituu
+    cost: 0
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: urusi
+    cost: 0
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: siryou
+    cost: 0
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  - name: uri
+    cost: 0
+    effect: 0
+    Power: 0
+    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}

@@ -18,6 +18,7 @@ public struct StatusValue
     public int Cost;
     public int Enlightenment;
     public int[] Skill;
+    public int[] PSkill;
     public int[] Item;
     public StatusValue(int i = 0)
     {
@@ -29,6 +30,7 @@ public struct StatusValue
         Cost = i;
         Enlightenment = i;
         Skill = Enumerable.Repeat(i, 3).ToArray();
+        PSkill = Enumerable.Repeat(i, 3).ToArray();
         Item = Enumerable.Repeat(i,5).ToArray();
     }
 }
@@ -92,14 +94,22 @@ public class Status
             status.Hp = int.Parse(v[1]);
             status.MaxHp = int.Parse(v[2]);
             status.Atk = int.Parse(v[3]);
-            status.Cost = int.Parse(v[4]);
-            status.Enlightenment = int.Parse(v[5]);
-            string[] skill = v[6].Split(',');
-            string[] item = v[7].Split(',');
+            status.Agi = int.Parse(v[4]);
+            status.Cost = int.Parse(v[5]);
+            status.Enlightenment = int.Parse(v[6]);
+            string[] skill = v[7].Split(',');
+            string[] pskill = v[8].Split(',');
+            string[] item = v[9].Split(',');
             int a = 0;
             foreach (string s in skill)
             {
                 status.Skill[a] = int.Parse(s);
+                a++;
+            }
+            a = 0;
+            foreach (string s in pskill)
+            {
+                status.PSkill[a] = int.Parse(s);
                 a++;
             }
             a = 0;
@@ -108,7 +118,7 @@ public class Status
                 status.Item[a] = int.Parse(i);
                 a++;
             }
-
+            a = 0;
             // わからなかった
             //int cnt = 0;
             //FieldInfo[] info = status.GetType().GetFields();

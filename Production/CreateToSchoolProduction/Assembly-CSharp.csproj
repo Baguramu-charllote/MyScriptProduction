@@ -64,12 +64,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InputController\InputController.cs" />
+    <Compile Include="Assets\InputController\TestScript.cs" />
     <Compile Include="Assets\Script\Data.cs" />
     <Compile Include="Assets\Script\DataManager.cs" />
     <Compile Include="Assets\Script\EnemyData.cs" />
     <Compile Include="Assets\Script\EnemyStatus.cs" />
     <Compile Include="Assets\Script\Enemysearch.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\InputManager.cs" />
     <Compile Include="Assets\Script\ItemData.cs" />
     <Compile Include="Assets\Script\ItemState.cs" />
     <Compile Include="Assets\Script\NamedArrayAttribute.cs" />
