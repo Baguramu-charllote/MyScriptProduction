@@ -64,11 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Controller Tester\Scripts\DetectUnknownControllerMappings.cs" />
     <Compile Include="Assets\InputController\InputController.cs" />
     <Compile Include="Assets\InputController\TestScript.cs" />
+    <Compile Include="Assets\Script\BaseEnemy.cs" />
     <Compile Include="Assets\Script\Data.cs" />
     <Compile Include="Assets\Script\DataManager.cs" />
     <Compile Include="Assets\Script\EnemyData.cs" />
+    <Compile Include="Assets\Script\EnemyManager.cs" />
     <Compile Include="Assets\Script\EnemyStatus.cs" />
     <Compile Include="Assets\Script\Enemysearch.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Assets\Script\ItemData.cs" />
     <Compile Include="Assets\Script\ItemState.cs" />
     <Compile Include="Assets\Script\NamedArrayAttribute.cs" />
+    <Compile Include="Assets\Script\ReUIMnager.cs" />
     <Compile Include="Assets\Script\ReturnListUI.cs" />
     <Compile Include="Assets\Script\SaveManager.cs" />
     <Compile Include="Assets\Script\SceneData.cs" />
@@ -84,6 +88,9 @@
     <Compile Include="Assets\Script\Skill\ScSkillBase.cs" />
     <Compile Include="Assets\Script\Skill\SkillData.cs" />
     <Compile Include="Assets\Script\Skill\SkillStatus.cs" />
+    <Compile Include="Assets\Script\State.cs" />
+    <Compile Include="Assets\Script\StateMachine.cs" />
+    <Compile Include="Assets\Script\StatefullObject.cs" />
     <Compile Include="Assets\Script\Status.cs" />
     <Compile Include="Assets\Script\UIOperationManager.cs" />
     <Reference Include="UnityEngine">

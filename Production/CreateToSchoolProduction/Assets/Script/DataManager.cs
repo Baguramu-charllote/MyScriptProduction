@@ -15,7 +15,7 @@ public class DataManager : Singleton<DataManager>
     [SerializeField] EnemyData EnemyD = null;
     [SerializeField] SkillData skillD = null;
     [SerializeField] ItemData  ItemD  = null;
-
+    public GameObject Pskillget = null;
     public GameObject uiprefab1;
     public ObjInfo wall;
 

@@ -7,6 +7,7 @@ public class SkillStatus
 {
     public string name = "";
     public int cost = 0;
+    public int delayTime = 0;
     public EffectType Etype;
     public Sprite sprite;
     public enum EffectType
@@ -20,6 +21,7 @@ public class PskillStatus
 {
     public string name = "";
     public int cost = 0;
+    public int power = 0;
     public EffectType effect;
     public int Power;
     public Sprite sprite;

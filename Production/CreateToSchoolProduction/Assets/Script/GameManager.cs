@@ -4,41 +4,42 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    [Header("UIObject")]
-    [SerializeField] GameObject UI = null;
-
     // Playerのステータス
     [System.NonSerialized] public Status s;
-
-    DataManager datamanager;
+    [System.NonSerialized] public Transform player;
 
     // セーブ用のテキスト読み書き用Manager
     SaveManager saveM = new SaveManager();
 
     // skillを獲得したときこの配列に入れる
-    int[] Inventory = new int[64];
+    bool[] Inventory = new bool[32];
 
     // 押した判定をとるためのbool配列
     bool[] keys;
+
+    ParticleSystem getskill = null;
+
+    [System.NonSerialized] public DataManager datamanager;
   
-    [System.NonSerialized] public UIOperationManager uimanagr;
+    [System.NonSerialized] public ReUIMnager uimanagr;
+
+    [System.NonSerialized] public EnemyManager enemyManager;
 
     RectTransform CanvasRT;
     #region Unity
 
     void Awake()
     {
-        s = new Status(saveM.Readtext());
+        s = new Status(saveM.Readtext());                    //要改良
         datamanager = GetComponent<DataManager>();
+        enemyManager = GetComponent<EnemyManager>();
         GameObject canvas;
         canvas = GameObject.Find("Canvas");
-        CanvasRT = canvas.GetComponent<RectTransform>();
-        List<GameObject> UIs = new List<GameObject>();
-        foreach (Transform t in (UI.transform.GetComponentInChildren<Transform>()))
-        {
-            UIs.Add(t.gameObject);
-        }
-        uimanagr = new UIOperationManager(canvas, UIs.ToArray());
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        CanvasRT = canvas.GetComponent<RectTransform>();        
+        uimanagr = GetComponent<ReUIMnager>();
+        GameObject p = Instantiate(datamanager.Pskillget,player.position,Quaternion.identity);
+        getskill = p.GetComponent<ParticleSystem>();
     }
 
     void Start()
@@ -63,50 +64,85 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
+    #region private
+    /// <summary>
+    /// キー入力を受け取る
+    /// </summary>
+    void GetInput()
+    {
+        /*if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                uimanagr.InputKeyReceiver(KeyCode.Return);
+                getSkill(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                uimanagr.InputKeyReceiver(KeyCode.Space);
+            }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                uimanagr.InputKeyReceiver(KeyCode.UpArrow);
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                uimanagr.InputKeyReceiver(KeyCode.DownArrow);
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                uimanagr.InputKeyReceiver(KeyCode.RightArrow);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                uimanagr.InputKeyReceiver(KeyCode.LeftArrow);
+            }
+        }*/
+    }
+
+    /// <summary>
+    /// セーブする
+    /// </summary>
+    void save()
+    {
+        string savedata = "";
+        savedata = s.SaveString + '\n' ;
+        foreach(bool b in Inventory)
+        {
+            savedata += b?1:0 + ',';
+        }
+        saveM.Writetext(savedata);
+    }
+
+    //ロードする
+    void Load()
+    {
+        string[] datas = saveM.Readtext().Split(';');
+        s = new Status(datas[0]);
+        string[] skills = datas[1].Split(',');
+        for(int i = 0;i < skills.Length;i++)
+        {
+            if(Inventory.Length > i)
+            {
+                Inventory[i] = int.Parse(skills[i]) == 1 ? true : false;
+            }
+        }
+    }
+
+    #endregion
 
     #region public
-    public void test()
-    {
-        string a = s.SaveString;
-    }
+
+    /// <summary>
+    /// 簡単にkeyコンフィグをつくろうとした名残(無理)
+    /// </summary>
+    /// <param name="code"></param>
+    /// <returns></returns>
     public bool onkeydown(KeyCode code)
     {
         bool onkey = false;
 
         return onkey;
-    }
-    #endregion
-
-    #region private
-    void GetInput()
-    {
-        if (Input.anyKeyDown)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                uimanagr.OpenUI();
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                uimanagr.SelectUI(true);
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                uimanagr.SelectUI(false);
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                uimanagr.DecisionUI();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-
-            }
-        }
     }
 
     /// <summary>
@@ -134,28 +170,26 @@ public class GameManager : Singleton<GameManager>
             obj.transform.localScale = state.WallEntry[i].Scale;
         }
         // 敵の生成
-        for (int i = 0; i < state.EntryEnemy.Length; i++)
-        {
-            GameObject obj = new GameObject();
-            obj.name = "Enemy" + i.ToString();
-            EnemyStatus enemy = datamanager.EnemyValueOut(state.EntryEnemy[i].id);
-            obj.AddComponent<MeshFilter>();
-            obj.AddComponent<MeshRenderer>();
+        enemyManager.CreateEnemy(state);
+    }
 
-            obj.GetComponent<MeshFilter>().mesh = enemy.mesh;
-            obj.GetComponent<MeshRenderer>().material = enemy.material;
-
-            obj.transform.position = state.EntryEnemy[i].SpornPos;
-        }
+    public void getSkill(int SkillId)
+    {
+        Inventory[SkillId] = true;
+        getskill.Play();
     }
 
     public void Quit()
     {
 #if UNITY_EDITOR
+        save();
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_STANDALONE
+        save();
         Application.Quit();
 #endif
     }
     #endregion
+
+
 }

@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Controller Tester\Scripts\Editor\TestGamepadEditor.cs" />
     <Compile Include="Assets\Script\Editor\DataCreateEditor.cs" />
     <Compile Include="Assets\Script\Editor\DataRelatEditor.cs" />
     <Compile Include="Assets\Script\Editor\EnemyDataEditor.cs" />

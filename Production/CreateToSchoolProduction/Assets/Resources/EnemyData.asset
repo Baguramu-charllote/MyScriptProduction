@@ -22,3 +22,21 @@ MonoBehaviour:
     Experience: 0
     mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     material: {fileID: 2100000, guid: b63532716af4c0d43ac680a01f17550f, type: 2}
+  - name: Gobu
+    no: 1
+    MaxHp: 5
+    Hp: 0
+    Atk: 0
+    SkillNo: 0
+    Experience: 0
+    mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+    material: {fileID: 2100000, guid: b63532716af4c0d43ac680a01f17550f, type: 2}
+  - name: Bogobu
+    no: 2
+    MaxHp: 0
+    Hp: 0
+    Atk: 0
+    SkillNo: 0
+    Experience: 0
+    mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+    material: {fileID: 2100000, guid: b63532716af4c0d43ac680a01f17550f, type: 2}

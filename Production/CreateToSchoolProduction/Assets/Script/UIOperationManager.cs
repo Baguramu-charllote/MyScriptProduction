@@ -11,8 +11,11 @@ using System.Reflection;
 /// UIsの中には表示させるすべてのUIをいれ使う。
 /// UIsの最初はmenuに使われているUIを入れておくこと。
 /// </summary>
-public class UIOperationManager
+public class UIOperationManager:Singleton<UIOperationManager>
 {
+    [Header("UIObject")]
+    [SerializeField] GameObject UI = null;
+
     GameObject[] UIs;       // 配列1個目は全体のObject
     GameObject[] Buttons;   // Menuのボタンを集める
 
@@ -20,7 +23,7 @@ public class UIOperationManager
     int selectcnt = 0;      // 現在のButtonの数
 
     UIStatus now = UIStatus.Menu;
-    GameObject After = null;
+    UIStatus Befor = UIStatus.Menu;
 
     public bool isOpenUI = false;  // UIが開いているか
     /// <summary>
@@ -31,16 +34,18 @@ public class UIOperationManager
         Menu,
         Status,
         Skill,
+        Skillselect,
         Quite,
     }
 
-    /// <summary>
-    /// 生成時UI情報を受け取り記録する
-    /// </summary>
-    /// <param name="objs"> 保存するobject</param>
-    public UIOperationManager(GameObject canvas,GameObject[] objs)
+    private void Awake()
     {
-        UIs = objs;
+        List<GameObject> objs = new List<GameObject>();
+        foreach (Transform t in (UI.transform.GetComponentInChildren<Transform>()))
+        {
+            objs.Add(t.gameObject);
+        }
+        UIs = objs.ToArray();
         Transform parent = UIs[0].transform;
         bool[] a = UIs.Select(n => { n.transform.parent = parent; return true; }).ToArray();    
         // メニューのselectを追加する
@@ -63,8 +68,9 @@ public class UIOperationManager
             Debug.Log(DataManager.instance.SkillCount.ToString() + ':' +DataManager.instance.PSkillCount.ToString());
         }
         selectcnt = Buttons.Length;
-        OpenUI();
+        OpenUI();        
     }
+
     
     /// <summary>
     /// stateをUIに反映させる
@@ -184,32 +190,85 @@ public class UIOperationManager
     /// </summary>
     public void DecisionUI()
     {
-        if (now == UIStatus.Menu)
+        switch (now)
         {
-            if ((UIStatus)cnt == UIStatus.Skill)
-            {
+            case UIStatus.Menu:
+                Befor = UIStatus.Menu;
                 if (UIs[cnt].transform.Find("select"))
                 {
                     if (UIs[cnt].transform.Find("select").childCount > 0)
                     {
-                        Buttons = SpecifyGetChild("Button", UIs[cnt].transform.Find("select").gameObject);
+                        Buttons = (SpecifyGetChild("Cartridge", UIs[cnt].transform.Find("select").GetChild(0).gameObject));
+                        selectcnt = Buttons.Length;
+                        Debug.Log(selectcnt);
                     }
                 }
-            }
-            else if ((UIStatus)cnt == UIStatus.Quite)
-            {
-                Buttons = SpecifyGetChild("Button", UIs[cnt].transform.Find("select").gameObject);
-                cnt = 1;
-                selectcnt = Buttons.Length;
-                Buttons[cnt - 1].GetComponent<Image>().color = Color.gray;
-            }
-            now = (UIStatus)cnt;
-            Debug.Log("now:" + now + "\nbutton数:" + selectcnt);
+                if (Buttons.Length > 0)
+                {
+                    now = (UIStatus)cnt;
+                }
+                break;
+            case UIStatus.Status:
+                Befor = UIStatus.Menu;
+                if (UIs[cnt].transform.Find("select"))
+                {
+                    if (UIs[cnt].transform.Find("select").childCount > 0)
+                    {
+                        Buttons = (SpecifyGetChild("Cartridge", UIs[cnt].transform.Find("select").GetChild(0).gameObject));
+                        selectcnt = Buttons.Length;
+                        Debug.Log(selectcnt);
+                    }
+                }
+                if (Buttons.Length > 0)
+                {
+                    now = (UIStatus)cnt;
+                }
+                break;
+            case UIStatus.Skill:
+                Befor = UIStatus.Menu;
+                if (UIs[cnt].transform.Find("select"))
+                {
+                    if (UIs[cnt].transform.Find("select").childCount > 0)
+                    {
+                        Buttons = (SpecifyGetChild("Cartridge", UIs[cnt].transform.Find("select").GetChild(0).gameObject));
+                        selectcnt = Buttons.Length;
+                        Debug.Log(selectcnt);
+                    }
+                }
+                if (Buttons.Length > 0)
+                {
+                    now = (UIStatus)cnt;
+                }
+                break;
+            case UIStatus.Skillselect:
+
+                break;
+            case UIStatus.Quite:
+                break;
+            default:
+                Debug.Log("Menu外です。");
+                break;
         }
     }
 
     /// <summary>
-    /// UIを開く閉じるだけ
+    /// menuに戻る
+    /// </summary>
+    public void ReturnMenu()
+    {
+        Buttons = SpecifyGetChild("Button", UIs[0].transform.Find("select").gameObject);
+        foreach(GameObject g in Buttons)
+        {
+            g.GetComponent<Image>().color = Color.white;
+        }
+        Buttons[(int)now].GetComponent<Image>().color = Color.gray;
+
+        now = UIStatus.Menu;
+        Befor = UIStatus.Menu;
+    }
+
+    /// <summary>
+    /// UIを開くまたは閉じるだけ
     /// </summary>
     public void OpenUI()
     {
@@ -232,6 +291,7 @@ public class UIOperationManager
             UIs[(int)UIStatus.Menu].SetActive(true);
             UIs[(int)UIStatus.Status].SetActive(true);
             Buttons[0].GetComponent<Image>().color = Color.grey;
+            now = UIStatus.Menu;
         }
         isOpenUI = UIs[(int)UIStatus.Menu].activeSelf;        
     }

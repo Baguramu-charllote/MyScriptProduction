@@ -119,29 +119,6 @@ public class Status
                 a++;
             }
             a = 0;
-            // わからなかった
-            //int cnt = 0;
-            //FieldInfo[] info = status.GetType().GetFields();
-            //foreach (FieldInfo i in info)
-            //{
-            //    Type t = i.GetValue(status).GetType();
-            //    if (t.IsValueType || t == typeof(String))　//　値型の時
-            //    {
-            //        i.SetValue(status, int.Parse(v[cnt]));
-            //    }
-            //    else                 // 値型じゃない時
-            //    {
-            //        if (t.IsArray)
-            //        {
-            //            foreach (string str in v[cnt].Split(','))
-            //            {
-
-            //            }
-            //        }
-            //    }
-            //    cnt++;
-            //}
-
         }
     }
 }

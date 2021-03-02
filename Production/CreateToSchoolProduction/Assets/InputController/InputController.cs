@@ -11,7 +11,7 @@ public static class InputController
 {
     private static List<Controller> controllers = new List<Controller>();
 
-    #region GamePadひな形
+    #region GamePadひな形　　　追記：ボタンと数値の関連付けしたリストをゲームパッドの1つとしている
     private static Dictionary<Button, int> padButtons = new Dictionary<Button, int>() {
         { Button.A, 0 },
         { Button.B, 1 },
@@ -27,14 +27,17 @@ public static class InputController
         { Button.RightStick, 11 },
     };
     #endregion
-
+    
+    //　padButtonを複数用意し、複数のゲームパッドに対応する用のList?
     private static List<Dictionary<Button, int>> gamePads = null;
 
-    public static double Threshold { get; private set; }
+    // しきい値：ある事象においての最低限度の強さの値
+    public static double Threshold { get; private set; }          
 
     /// <summary>
     /// UnityのデフォルトのInputに対応させるぞ！
     /// 詳しくは関数の中身を見てくれ！！
+    /// 追記：Defaultとして各キーに名前を設定する所
     /// </summary>
     public static void SetDefault()
     {
@@ -58,6 +61,7 @@ public static class InputController
     /// <summary>
     /// キーボードで操作できるようにするぞ！！
     /// 詳しくは関数の中身を見てくれ！！
+    /// 追記：上の様な感じで設定したボタン設定にキー入力を設定する
     /// </summary>
     public static void SetForKeyboard()
     {
@@ -83,6 +87,7 @@ public static class InputController
     
     /// <summary>
     /// 任意のKeyCodeを割り当てられるぞ！！
+    /// 追記：自分で設定したいキーを付けるためのメソッド
     /// </summary>
     /// <param name="buttons"></param>
     /// <param name="button_keys"></param>
@@ -93,6 +98,7 @@ public static class InputController
         if (controllers == null)
             controllers = new List<Controller>();
 
+        // 1番基本のコントローラーに設定するようにしている
         Controller controller;
         if (controllers.Count == 0)
         {
@@ -719,6 +725,16 @@ public static class InputController
             return Buttons[button].GetButtonDown();
         }
 
+        public bool GetButtonStay(Button button)
+        {
+            return Buttons[button].GetButtonStay();
+        }
+
+        public bool GetButtonUp(Button button)
+        {
+            return Buttons[button].GetButtonUp();
+        }
+
         public bool GetAnyButtonDown()
         {
             bool down = false;
@@ -731,11 +747,6 @@ public static class InputController
             return down;
         }
 
-        public bool GetButtonStay(Button button)
-        {
-            return Buttons[button].GetButtonStay();
-        }
-
         public bool GetAnyButtonStay()
         {
             bool stay = false;
@@ -746,11 +757,6 @@ public static class InputController
             }
 
             return stay;
-        }
-
-        public bool GetButtonUp(Button button)
-        {
-            return Buttons[button].GetButtonUp();
         }
 
         public bool GetAnyButtonUp()
@@ -893,7 +899,7 @@ public static class InputController
             public Button Button { get; private set; }
             private string _name;
             private KeyCode _keycode;
-            private bool _previous = false;
+            private bool _previous = false;　　　　　　　//previous:前
             private bool _now = false;
             public bool Enabled { get; private set; }
             public float StayTime { get; private set; }
@@ -1150,6 +1156,8 @@ public static class InputController
         }
     }
 
+
+
     #region enum
     /// <summary>
     /// これだけあれば十分だろう！！
@@ -1167,6 +1175,9 @@ public static class InputController
         R_Horizontal, R_Vertical, L_Horizontal, L_Vertical, Cross_Horizontal, Cross_Vertical, Side, None, 
     }
 
+    /// <summary>
+    /// ゲームパッドの数
+    /// </summary>
     public enum GamePad
     {
         One, Two, Three, Four, All, None, 
